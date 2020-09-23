@@ -1,0 +1,36 @@
+{
+  "name": "game-server",
+  "version": "1.0.0",
+  "description": "GlowServer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Gordon Cheung",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "shortid": "^2.2.15",
+    "socket.io-client": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "shortid": "^2.2.15",
+    "socket.io": "^2.3.0"
+  },
+  "engines": {
+    "node": "12.10.x",
+    "npm": "6.14.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Datguypotato/GlowServer.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Datguypotato/GlowServer/issues"
+  },
+  "homepage": "https://github.com/Datguypotato/GlowServer#readme"
+}
