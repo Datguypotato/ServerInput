@@ -1,5 +1,5 @@
-var shortID = require('shortID');
-var Vector2 = require('./vector2.js')
+var shortID = require('shortid');
+//var Vector2 = require('./vector2.js')
 
 module.exports = class Player
 {
@@ -7,6 +7,6 @@ module.exports = class Player
     {
         this.username = '';
         this.id = shortID.generate();
-        this.position = new Vector2();
+        this.position = {"x": 0, "y": 0};
     }
 }
