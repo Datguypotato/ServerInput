@@ -19,19 +19,21 @@ io.on('connect', (socket) =>
 
   console.log("Client connected with id " + webPlayer.id);
 
-  socket.emit("register", {id: webPlayer.id});
-  socket.emit("spawn", webPlayer);
-});
+  socket.broadcast.emit("register", {id: webPlayer.id});
+  socket.broadcast.emit("spawn", webPlayer);
 
-io.on('connection', (socket) => {
   socket.on("joy", (data) => {
 
     webPlayer.position.x = data.x;
     webPlayer.position.y = data.y;
 
     socket.broadcast.emit("joy", webPlayer);
-    console.log("Joystick position received: " + data.x + ", " + data.y + "\nfrom id: " + webPlayer.id);
+    //console.log("Joystick position received: " + data.x + ", " + data.y + "\nfrom id: " + webPlayer.id);
   });
+});
+
+io.on('connection', (socket) => {
+
 });
 
 http.listen(port, () => {

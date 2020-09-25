@@ -3,7 +3,7 @@ var position = {"x": 0, "y": 0};
 var currPosition = {"x": 0, "y": 0};
 var Socket = io();
 
-Socket.emit('connect');
+Socket.emit('connect', Socket);
 
 setInterval(function()
 { 
