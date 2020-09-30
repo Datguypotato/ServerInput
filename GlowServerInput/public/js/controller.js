@@ -1,9 +1,26 @@
 var joy = new JoyStick('joyDiv');
 var position = {"x": 0, "y": 0};
 var currPosition = {"x": 0, "y": 0};
-var Socket = io();
+const Socket = io();
+var _ID;
 
-Socket.emit('connect', Socket);
+
+window.onbeforeunload = function(e)
+{
+    Socket.emit('exit', _ID);
+}
+
+Socket.on("connect", () =>
+{
+    console.log("Connected");
+
+    Socket.on("GetID", (data) =>
+    {
+        console.log(data);
+        _ID = data
+    });
+});
+
 
 setInterval(function()
 { 
@@ -21,5 +38,3 @@ setInterval(function()
     currPosition.y = position.y;
 
 }, 100);
-
-
