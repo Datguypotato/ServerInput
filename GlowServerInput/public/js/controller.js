@@ -4,25 +4,17 @@ var currPosition = {"x": 0, "y": 0};
 const Socket = io();
 var _ID;
 
-
-window.onbeforeunload = function(e)
+Socket.on('connect', () =>
 {
-    Socket.emit('exit', _ID);
-}
+    Socket.emit("requestID");
 
-Socket.on("connect", () =>
-{
-    console.log("Connected");
-
-    Socket.on("GetID", (data) =>
+    Socket.on("returnID", (ID) =>
     {
-        console.log(data);
-        _ID = data
+        _ID = ID;
+        console.log("received ID: " + ID);
     });
-});
 
-
-setInterval(function()
+    setInterval(function()
 { 
     position.x = joy.GetX();
     position.y = joy.GetY();
@@ -38,3 +30,11 @@ setInterval(function()
     currPosition.y = position.y;
 
 }, 100);
+});
+
+window.onbeforeunload = function(e)
+{
+    Socket.emit('exit', _ID);
+}
+
+
