@@ -29,9 +29,14 @@ io.on('connect', (socket) =>
     console.log("Returning ID: " + webPlayer.id)
   });
 
+  socket.on("spawnPlayer", receivedUsername =>
+  {
+    webPlayer.username = receivedUsername;
 
-  socket.broadcast.emit("register", {id: webPlayer.id});
-  socket.broadcast.emit("spawn", webPlayer);
+    socket.broadcast.emit("register", {id: webPlayer.id});
+    socket.broadcast.emit("spawn", webPlayer);
+  });
+  
 
   socket.on("joy", (data) => {
 
