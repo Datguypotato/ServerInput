@@ -12,7 +12,7 @@ window.onload = function()
     button.onclick = JoinServer;
     //inputfield.onkeyup = JoinServer;
 
-    document.getElementById("joyDiv").style.display = "none";
+    //document.getElementById("joyDiv").style.display = "none";
 }
 
 function JoinServer(e)

@@ -1,4 +1,4 @@
-*
+/**
 {
         box-sizing: border-box;
 }
@@ -24,18 +24,32 @@ body
   float: left;
   width: 70%;
   min-width: 300px;
-}
+}*/
 #joyDiv
 {
-        width:800px;
-        height:800px;
-        margin-left: auto;
-        margin-right: auto;
+        width:500px;
+        height:500px;
+        margin-left: 30%;
+        margin-top: 60%;
 }
 #loginDiv
 {
-        height:500px;
-        width: 500px;
-        font-size:25pt;
+        margin-top: 30%;
 }
-  
+#usernameLabel
+{        
+        margin-left: 1%;
+        font-size: xx-large;
+}
+#inputfield
+{
+        font-size: 120px;
+        height: 200px;
+        width: 800px;
+}
+#joinButton
+{
+        height: 200px;
+        width: 200px;
+        font-size: 60px;
+}
