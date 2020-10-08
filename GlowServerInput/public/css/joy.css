@@ -27,17 +27,15 @@ body
 }
 #joyDiv
 {
-        width:400px;
-        height:400px;
+        width:800px;
+        height:800px;
         margin-left: auto;
         margin-right: auto;
 }
-#joystick
+#loginDiv
 {
-        border: 1px solid #FF0000;
-}
-#joystick2
-{
-        border: 1px solid #0000FF;
+        height:500px;
+        width: 500px;
+        font-size:25pt;
 }
   

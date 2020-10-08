@@ -4,28 +4,38 @@ var currPosition = {"x": 0, "y": 0};
 const Socket = io();
 var _ID;
 
+var button = document.getElementById("joinButton");
+var inputfield = document.getElementById("inputfield");
+
 window.onload = function()
 {
-    var button = document.getElementById("joinButton");
-    var inputfield = document.getElementById("inputfield");
-    var usernameLabel = document.getElementById("usernameLabel");
+    button.onclick = JoinServer;
+    //inputfield.onkeyup = JoinServer;
 
-    button.onclick = function()
+    document.getElementById("joyDiv").style.display = "none";
+}
+
+function JoinServer(e)
+{
+    console.log("which output: " + e.which + " keycoded output: " + e.keyCode);
+    var keypressed = e.which || e.keyCode;
+
+    //if(keypressed == 13)
     {
+        var usernameLabel = document.getElementById("usernameLabel");
+
         if(inputfield.value.length > 3)
         {
             Socket.emit("spawnPlayer", inputfield.value);
-
+    
             //disable all the things needed to join and enable the joystick
             inputfield.style.display = "none";
             button.style.display = "none";
             usernameLabel.style.display = "none";
-
+    
             document.getElementById("joyDiv").style.display = "block";
         }
     }
-
-    document.getElementById("joyDiv").style.display = "none";
 }
 
 Socket.on('connect', () =>
