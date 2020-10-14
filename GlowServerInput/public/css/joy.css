@@ -6,7 +6,7 @@ body {
 
 #wrapper
 {
-        background-image: url("../image/Joystick_background.png");
+        background-image: url("../image/Joystick_backgroundPortrait.png");
         background-position: center center;
         background-size: auto 100vh;
         position: relative;
@@ -105,6 +105,9 @@ body {
                 height: 100vh;
                 max-width: 30vw;
         }
+        #wrapper{
+                background-image: url("../image/Joystick_backgroundLandscape.png");
+        }
 }
       
 @media (orientation: portrait) {
@@ -116,5 +119,8 @@ body {
         #loginDiv {
                 width: 100vw;
                 height: auto;
+        }
+        #wrapper{
+                background-image: url("../image/Joystick_backgroundPortrait.png");
         }
 }

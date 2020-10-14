@@ -29,7 +29,6 @@ function JoinServer(e)
 
     //if(keypressed == 13)
     {
-        var usernameLabel = document.getElementById("usernameLabel");
 
         if(inputfield.value.length > 3)
         {
@@ -39,8 +38,10 @@ function JoinServer(e)
             inputfield.style.display = "none";
             button.style.display = "none";
             usernameLabel.style.display = "none";
+
+            // add ingame status
     
-            document.getElementById("joyDiv").style.display = "block";
+            //document.getElementById("joyDiv").style.display = "block";
         }
         else
         {
