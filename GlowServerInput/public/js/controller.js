@@ -60,8 +60,10 @@ Socket.on('connect', () =>
         console.log("received ID: " + ID);
     });
 
+    // on kicked
+
     setInterval(function()
-{ 
+    { 
     position.x = joy.GetX();
     position.y = joy.GetY();
 
@@ -73,9 +75,8 @@ Socket.on('connect', () =>
         Socket.emit('joy', position);
     }
     currPosition.x = position.x;
-    currPosition.y = position.y;
-
-}, 100);
+    currPosition.y = positiony;
+    }, 100);
 });
 
 window.onbeforeunload = function(e)
