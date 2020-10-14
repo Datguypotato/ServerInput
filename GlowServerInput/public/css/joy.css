@@ -1,55 +1,120 @@
-/**
-{
-        box-sizing: border-box;
-}
-body
-{
-        margin: 0px;
+body {
+        background-color: black;
         padding: 0px;
-        font-family: monospace;
+        margin: 0px;
 }
-.row
+
+#wrapper
 {
-        display: inline-flex;
-        clear: both;
-}
-.columnLateral
-{
-  float: left;
-  width: 15%;
-  min-width: 300px;
-}
-.columnCetral
-{
-  float: left;
-  width: 70%;
-  min-width: 300px;
-}*/
-#joyDiv
-{
-        width:500px;
-        height:500px;
-        margin-left: 30%;
-        margin-top: 60%;
+        background-image: url("../image/Joystick_background.png");
+        background-position: center center;
+        background-size: auto 100vh;
+        position: relative;
+        background-repeat: no-repeat;
+        width: auto;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-flow: wrap;
 }
 #loginDiv
 {
-        margin-top: 30%;
+        width: 50vw;
+        height: 100vh;
+        max-height: 50vh;
+        padding: 0px;
+        margin: 0px;
+        border: 1px solid white;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 }
-#usernameLabel
-{        
-        margin-left: 1%;
-        font-size: xx-large;
+
+#loginDiv label{
+        color: white;
+        font-size: 1em;
+        display: block;
+        text-align: center;
 }
-#inputfield
+
+#loginDiv input {
+        display: block;
+        background-color: black;
+        border: 1px solid white;
+        border-radius: 20px;
+        color: white;
+        width: 95%;
+        font-size: 1.4em;
+        height: 1.6em;
+        margin: 20px auto;
+        text-align: center;
+}
+
+#loginDiv button {
+        display: block;
+        background-color: black;
+        border: 1px solid white;
+        border-radius: 20px;
+        color: white;
+        width: 95%;
+        font-size: 1.4em;
+        height: 1.6em;
+        margin: 20px auto;
+}
+
+#joyDiv
 {
-        font-size: 120px;
-        height: 200px;
-        width: 800px;
+        position: relative;
+        width:100%;
+        height:100%;
 }
-#joinButton
+#joyWrapper {
+        background-image: url(../image/JoystickCircle.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 50vw;
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: wrap;
+}
+
+#joyCircle
 {
-        height: 200px;
-        width: 200px;
-        font-size: 60px;
+        position: relative;
+        width: calc(100% + 50px);
+        height: calc(100% + 50px);
+        z-index: -1;
+}
+
+@media (orientation: landscape) {
+        #joyWrapper{
+                width:100vh;
+                height: 100vh;
+        }
+        #loginDiv {
+                width: auto;
+                height: 100vh;
+                max-width: 30vw;
+        }
+}
+      
+@media (orientation: portrait) {
+        #joyWrapper {
+                width: 100vw;
+                height: 100vw;
+        }
+
+        #loginDiv {
+                width: 100vw;
+                height: auto;
+        }
 }

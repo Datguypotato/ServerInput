@@ -5,22 +5,26 @@
 		<link rel="stylesheet" href="css/joy.css">
 		<meta charset="utf-8">
 		<meta name="description" content="Example page of use pure Javascript JoyStick">
-	</head>
-	<body>
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=false">
 		<script src="/js/joy.js"></script>
 		<script src="/js/socket-io.js"></script>
+	</head>
+	<body>				
+		<div id="wrapper">
 
-		<div id="loginDiv">
-			<label for="Username" id="usernameLabel">Username</label>
-			<input type="text" id="inputfield" maxlength="10" autocomplete="off">
-			<button type="button" id="joinButton">Join</button>
+			<div id="loginDiv">
+				<label for="Username" id="usernameLabel">Username</label>
+				<input type="text" id="inputfield" placeholder="Username" maxlength="10" autocomplete="off">
+				<button type="button" id="joinButton">Join</button>
+				<label id="errorLabel"></label>
+			</div>
+
+			<div id="joyWrapper">
+				<div id="joyDiv"></div>				
+				
+			</div>			
 		</div>
 
-
-		<div id="joyDiv"></div>
-
-		
 		<script src="/js/controller.js"></script>
-			
 	</body>
 </html>

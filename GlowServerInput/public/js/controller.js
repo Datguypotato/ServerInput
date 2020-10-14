@@ -4,6 +4,13 @@ var currPosition = {"x": 0, "y": 0};
 const Socket = io();
 var _ID;
 
+// window.addEventListener("resize", function () {
+//      Here, remove previous joystick
+//     joy = new JoyStick('joyDiv');
+//     position = {"x": 0, "y": 0};
+//     currPosition = {"x": 0, "y": 0};
+// });
+
 var button = document.getElementById("joinButton");
 var inputfield = document.getElementById("inputfield");
 
@@ -34,6 +41,10 @@ function JoinServer(e)
             usernameLabel.style.display = "none";
     
             document.getElementById("joyDiv").style.display = "block";
+        }
+        else
+        {
+            document.getElementById("errorLabel").textContent = "Name need to be atleast 4 characters or more"
         }
     }
 }
