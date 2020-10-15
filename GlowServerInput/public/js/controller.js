@@ -13,13 +13,11 @@ var _ID;
 
 var button = document.getElementById("joinButton");
 var inputfield = document.getElementById("inputfield");
+var errorLabel = document.getElementById("errorLabel");
 
 window.onload = function()
 {
     button.onclick = JoinServer;
-    //inputfield.onkeyup = JoinServer;
-
-    //document.getElementById("joyDiv").style.display = "none";
 }
 
 function JoinServer(e)
@@ -27,7 +25,6 @@ function JoinServer(e)
     console.log("which output: " + e.which + " keycoded output: " + e.keyCode);
     var keypressed = e.which || e.keyCode;
 
-    //if(keypressed == 13)
     {
 
         if(inputfield.value.length > 3)
@@ -35,9 +32,10 @@ function JoinServer(e)
             Socket.emit("spawnPlayer", inputfield.value);
     
             //disable all the things needed to join and enable the joystick
-            inputfield.style.display = "none";
+            //inputfield.style.display = "none";
             button.style.display = "none";
-            usernameLabel.style.display = "none";
+            //usernameLabel.style.display = "none";
+            errorLabel.textContent = "";
 
             // add ingame status
     
@@ -45,7 +43,7 @@ function JoinServer(e)
         }
         else
         {
-            document.getElementById("errorLabel").textContent = "Name need to be atleast 4 characters or more"
+            errorLabel.textContent = "Name need to be atleast 4 characters or more"
         }
     }
 }
@@ -60,22 +58,28 @@ Socket.on('connect', () =>
         console.log("received ID: " + ID);
     });
 
-    // on kicked
+    Socket.on("checkKicked", (data) =>
+    {
+        if(_ID == data)
+        {
+            errorLabel.textContent = "You have been kicked from te server";
+            console.log("you have been kicked");
+        }
+    });
 
     setInterval(function()
     { 
-    position.x = joy.GetX();
-    position.y = joy.GetY();
+        position.x = joy.GetX();
+        position.y = joy.GetY();
 
-    if(currPosition.x != position.x || currPosition.y != position.y)
-    {
-        //console.log("my id is " + id);
-        console.log("Joystick position: " + position.x + ", " + position.y); 
-
-        Socket.emit('joy', position);
-    }
-    currPosition.x = position.x;
-    currPosition.y = positiony;
+        if(currPosition.x != position.x || currPosition.y != position.y)
+        {
+            //console.log("my id is " + id);
+            console.log("Joystick position: " + position.x + ", " + position.y); 
+            Socket.emit('joy', position);
+        }
+        currPosition.x = position.x;
+        currPosition.y = position.y;
     }, 100);
 });
 

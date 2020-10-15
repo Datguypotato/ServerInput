@@ -44,9 +44,14 @@ io.on('connect', (socket) =>
     webPlayer.position.y = data.y;
 
     socket.broadcast.emit("joy", webPlayer);
-    //console.log("Joystick position received: " + data.x + ", " + data.y + "\nfrom id: " + webPlayer.id);
   });
   
+  socket.on("kickPlayer", (data) =>
+  {
+    console.log("Kicking player with this id: " + data);
+
+    socket.broadcast.emit("checkKicked", data);
+  });
   
   socket.on('exit', (id) =>
   {
