@@ -15,6 +15,10 @@ var button = document.getElementById("joinButton");
 var inputfield = document.getElementById("inputfield");
 var errorLabel = document.getElementById("errorLabel");
 
+var ghostColorLabel = document.getElementById("ghostColorLabel");
+var isTaggerLabel = document.getElementById("isTaggerLabel");
+
+
 window.onload = function()
 {
     button.onclick = JoinServer;
@@ -22,30 +26,18 @@ window.onload = function()
 
 function JoinServer(e)
 {
-    console.log("which output: " + e.which + " keycoded output: " + e.keyCode);
-    var keypressed = e.which || e.keyCode;
-
+    if(inputfield.value.length > 3)
     {
+        Socket.emit("spawnPlayer", inputfield.value);
 
-        if(inputfield.value.length > 3)
-        {
-            Socket.emit("spawnPlayer", inputfield.value);
-    
-            //disable all the things needed to join and enable the joystick
-            //inputfield.style.display = "none";
-            button.style.display = "none";
-            //usernameLabel.style.display = "none";
-            errorLabel.textContent = "";
-
-            // add ingame status
-    
-            //document.getElementById("joyDiv").style.display = "block";
-        }
-        else
-        {
-            errorLabel.textContent = "Name need to be atleast 4 characters or more"
-        }
+        button.style.display = "none";
+        errorLabel.textContent = "";
     }
+    else
+    {
+        errorLabel.textContent = "Name need to be atleast 4 characters or more"
+    }
+
 }
 
 Socket.on('connect', () =>
@@ -67,6 +59,35 @@ Socket.on('connect', () =>
         }
     });
 
+    Socket.on("checkColor", (data) =>
+    {
+        if(data[0] == _ID)
+        {
+            red = data[1] * 255;
+            blue = data[2] * 255;
+            green = data[3] * 255;
+            errorLabel.style.color = rgb(red, blue, green);
+            errorLabel.textContent = "Your ghost color";
+        }
+    });
+
+    Socket.on("checkIsTagger", data =>
+    {   
+        console.log("received data " + data);
+        if(data[0] == _ID)
+        {
+            if(data[1] == true)
+            {
+                isTaggerLabel.textContent = "You are the tagger";
+            }
+            else
+            {
+                isTaggerLabel.textContent = "You are not the tagger";
+            }
+        }
+
+    });
+
     setInterval(function()
     { 
         position.x = joy.GetX();
@@ -82,6 +103,13 @@ Socket.on('connect', () =>
         currPosition.y = position.y;
     }, 100);
 });
+
+function rgb(r, g, b){
+    r = Math.floor(r);
+    g = Math.floor(g);
+    b = Math.floor(b);
+    return ["rgb(",r,",",g,",",b,")"].join("");
+  }
 
 window.onbeforeunload = function(e)
 {

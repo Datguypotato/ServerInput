@@ -3,6 +3,7 @@ var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
+const { debug } = require('console');
 var express = require('express')
 var player = require('./Classes/player');
 
@@ -51,6 +52,18 @@ io.on('connect', (socket) =>
     console.log("Kicking player with this id: " + data);
 
     socket.broadcast.emit("checkKicked", data);
+  });
+
+  socket.on("playerColor", (data) =>
+  {
+    socket.broadcast.emit("checkColor", data);
+  });
+
+  socket.on("playerIsTagger", (data) =>
+  {
+    console.log("received playerIsTagger data " + data);
+    socket.broadcast.emit("checkIsTagger", data);
+
   });
   
   socket.on('exit', (id) =>

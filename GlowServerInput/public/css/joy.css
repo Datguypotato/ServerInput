@@ -41,6 +41,13 @@ body {
         text-align: center;
 }
 
+#isTaggerLabel{
+        color: white;
+        font-size: 1em;
+        display: block;
+        text-align: center;
+}
+
 #loginDiv input {
         display: block;
         background-color: black;
